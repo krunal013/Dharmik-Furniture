@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="images/fav.webp" type="image/gif" />
+    <title>Gallery</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <!-- jQuery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <!-- Bootstrap JS -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <style>
+        body {
+            padding-top: 70px;
+            /* Space for fixed navbar */
+            background: url('./images/woodwall.jpg') no-repeat center center fixed;
+            background-size: cover;
+            /* Ensures the image covers the entire page */
+        }
+
+        .navbar {
+            background: rgba(255, 255, 255, 0.485);
+            /* Transparent white background */
+            backdrop-filter: blur(10px);
+            /* Blur effect */
+            border: none;
+            /* Remove border */
+            border-radius: 0;
+            /* Remove border radius */
+        }
+
+        .navbar-header {
+            padding: 0;
+            margin: 0;
+        }
+
+        .navbar-toggle {
+            margin-right: 15px;
+        }
+
+        .navbar-brand {
+            padding: 0;
+            margin: 0;
+        }
+
+        @media (max-width: 767px) {
+            .navbar-header {
+                padding: 15px;
+                margin-bottom: 25px;
+                text-align: center;
+            }
+
+            .navbar-brand img {
+                height: 80px;
+                /* Adjust the logo size */
+                width: auto;
+
+            }
+
+            #mainc {
+                padding-top: 15%;
+            }
+        }
+
+        .navbar-brand img {
+            height: 80px;
+            /* Adjust the logo size */
+            width: auto;
+        }
+
+        .navbar-nav {
+            margin: 0;
+            padding: 0;
+        }
+
+        .navbar-nav>li>a {
+            font-size: 18px;
+            /* Increase font size */
+            line-height: 80px;
+            /* Center text vertically with logo */
+            color: #FFA500;
+            /* Text color */
+            padding: 0 15px;
+            /* Horizontal padding */
+        }
+
+        .navbar-nav>li>a:hover {
+            color: #ffffff;
+            /* Text color on hover */
+            background-color: #FFA500;
+            /* Background color on hover */
+            border-radius: 5px;
+            /* Rounded corners for hover effect */
+        }
+
+        .gallery-title {
+            font-size: 36px;
+            color: #FFA500;
+            text-align: center;
+            font-weight: 500;
+            margin-bottom: 70px;
+        }
+
+        .filter-button {
+            font-size: 18px;
+            border: 1px solid #FFA500;
+            border-radius: 5px;
+            text-align: center;
+            color: #FFA500;
+            margin-bottom: 30px;
+        }
+
+        .filter-button:hover {
+            font-size: 18px;
+            border: 1px solid #FFA500;
+            border-radius: 5px;
+            text-align: center;
+            color: #ffffff;
+            background-color: #FFA500;
+        }
+
+        .filter-button.active {
+            background-color: #FFA500;
+            color: white;
+        }
+
+        .gallery_product {
+            margin-bottom: 30px;
+            /* Space between rows */
+        }
+
+        .gallery_product img {
+            width: 100%;
+            border-radius: 15px;
+            /* Rounded borders for the image */
+            margin-bottom: 15px;
+            /* Space between images in a row */
+        }
+
+        /* Modal Image Styling */
+        .modal-content {
+            border-radius: 15px;
+            /* Rounded borders for the image */
+        }
+    </style>
+</head>
+
+<body>
+    <nav class="navbar navbar-default navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar"
+                    aria-expanded="false">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="#">
+                    <img src="images/hardwear.png" alt="Dharmik Furniture Logo">
+                </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+                <ul class="nav navbar-nav">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="services.html">Team</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <div id="mainc" class="container">
+        <div class="row">
+            <div class="gallery col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <h1 class="gallery-title">Dharmik Furniture</h1>
+            </div>
+
+            <div align="center">
+                <button class="btn btn-default filter-button" data-filter="all">All</button>
+                <button class="btn btn-default filter-button" data-filter="home">Home</button>
+                <button class="btn btn-default filter-button" data-filter="showroom">Showroom & Shops</button>
+                <button class="btn btn-default filter-button" data-filter="bedrooms">Bedrooms</button>
+                <button class="btn btn-default filter-button" data-filter="kitchen">Kitchen</button>
+            </div>
+            <br />
+
+            <div class="gallery_product col-lg-4 col-md-4 col-sm-4 col-xs-6 filter home">
+                <img src="images/furnitures/all/home.jpg" class="img-responsive" data-toggle="modal"
+                    data-target="#imageModal" data-fullsize="images/furnitures/all/home.jpg"">
+            </div>
+
+            <div class=" gallery_product col-lg-4 col-md-4 col-sm-4 col-xs-6 filter sprinkle">
+                <img src="images/furnitures/all/home2.jpg""
+                    class=" img-responsive" data-toggle="modal" data-target="#imageModal"
+                    data-fullsize="images/furnitures/all/home2.jpg"">
+            </div>
+
+            <div class=" gallery_product col-lg-4 col-md-4 col-sm-4 col-xs-6 filter home">
+                <img src="images/furnitures/all/home3.jpg" class="img-responsive" data-toggle="modal"
+                    data-target="#imageModal" data-fullsize="images/furnitures/all/home3.jpg"">
+            </div>
+            <div class=" gallery_product col-lg-4 col-md-4 col-sm-4 col-xs-6 filter home">
+                <img src="images/furnitures/all/home4.jpg" class="img-responsive" data-toggle="modal"
+                    data-target="#imageModal" data-fullsize="images/furnitures/all/home4.jpg">
+            </div>
+
+            <div class="gallery_product col-lg-4 col-md-4 col-sm-4 col-xs-6 filter sprinkle">
+                <img src="images/furnitures/all/home5.jpg" class="img-responsive" data-toggle="modal"
+                    data-target="#imageModal" data-fullsize="images/furnitures/all/home5.jpg">
+            </div>
+
+            <div class="gallery_product col-lg-4 col-md-4 col-sm-4 col-xs-6 filter home">
+                <img src="images/furnitures/all/home6.jpg" class="img-responsive" data-toggle="modal"
+                    data-target="#imageModal" data-fullsize="images/furnitures/all/home6.jpg">
+            </div>
+
+            <div class="gallery_product col-lg-4 col-md-4 col-sm-4 col-xs-6 filter sprinkle">
+                <img src="images/furnitures/all/home7.jpg" class="img-responsive" data-toggle="modal"
+                    data-target="#imageModal" data-fullsize="images/furnitures/all/home7.jpg">
+            </div>
+
+            <div class="gallery_product col-lg-4 col-md-4 col-sm-4 col-xs-6 filter home">
+                <img src="images/furnitures/all/home8.jpg" class="img-responsive" data-toggle="modal"
+                    data-target="#imageModal" data-fullsize="images/furnitures/all/home8.jpg">
+            </div>
+
+            <div class="gallery_product col-lg-4 col-md-4 col-sm-4 col-xs-6 filter sprinkle">
+                <img src="images/furnitures/all/home9.jpg" class="img-responsive" data-toggle="modal"
+                    data-target="#imageModal" data-fullsize="images/furnitures/all/home9.jpg">
+            </div>
+
+            <div class="gallery_product col-lg-4 col-md-4 col-sm-4 col-xs-6 filter home">
+                <img src="images/furnitures/all/home10.jpg" class="img-responsive" data-toggle="modal"
+                    data-target="#imageModal" data-fullsize="images/furnitures/all/home10.jpg">
+            </div>
+
+            <div class="gallery_product col-lg-4 col-md-4 col-sm-4 col-xs-6 filter sprinkle">
+                <img src="images/furnitures/all/home11.jpg" class="img-responsive" data-toggle="modal"
+                    data-target="#imageModal" data-fullsize="images/furnitures/all/home11.jpg">
+            </div>
+
+            <div class="gallery_product col-lg-4 col-md-4 col-sm-4 col-xs-6 filter home">
+                <img src="images/furnitures/all/home12.jpg" class="img-responsive" data-toggle="modal"
+                    data-target="#imageModal" data-fullsize="images/furnitures/all/home12.jpg">
+            </div>
+
+            <div class="gallery_product col-lg-4 col-md-4 col-sm-4 col-xs-6 filter sprinkle">
+                <img src="images/furnitures/all/home13.jpg" class="img-responsive" data-toggle="modal"
+                    data-target="#imageModal" data-fullsize="images/furnitures/all/home13.jpg">
+            </div>
+
+            <div class="gallery_product col-lg-4 col-md-4 col-sm-4 col-xs-6 filter home">
+                <img src="images/furnitures/all/home14.jpg" class="img-responsive" data-toggle="modal"
+                    data-target="#imageModal" data-fullsize="images/furnitures/all/home14.jpg">
+            </div>
+
+            <div class="gallery_product col-lg-4 col-md-4 col-sm-4 col-xs-6 filter sprinkle">
+                <img src="images/furnitures/all/home15.jpg" class="img-responsive" data-toggle="modal"
+                    data-target="#imageModal" data-fullsize="images/furnitures/all/home15.jpg">
+            </div>
+
+            <div class="gallery_product col-lg-4 col-md-4 col-sm-4 col-xs-6 filter home">
+                <img src="images/furnitures/all/home16.jpg" class="img-responsive" data-toggle="modal"
+                    data-target="#imageModal" data-fullsize="images/furnitures/all/home16.jpg">
+            </div>
+
+            <div class="gallery_product col-lg-4 col-md-4 col-sm-4 col-xs-6 filter sprinkle">
+                <img src="images/furnitures/all/home17.jpg" class="img-responsive" data-toggle="modal"
+                    data-target="#imageModal" data-fullsize="images/furnitures/all/home17.jpg">
+            </div>
+
+            <div class="gallery_product col-lg-4 col-md-4 col-sm-4 col-xs-6 filter home">
+                <img src="images/furnitures/all/home18.jpg" class="img-responsive" data-toggle="modal"
+                    data-target="#imageModal" data-fullsize="images/furnitures/all/home18.jpg">
+            </div>
+
+            <div class="gallery_product col-lg-4 col-md-4 col-sm-4 col-xs-6 filter sprinkle">
+                <img src="images/furnitures/all/home19.jpg" class="img-responsive" data-toggle="modal"
+                    data-target="#imageModal" data-fullsize="images/furnitures/all/home19.jpg">
+            </div>
+
+            <div class="gallery_product col-lg-4 col-md-4 col-sm-4 col-xs-6 filter home">
+                <img src="images/furnitures/all/home20.jpg" class="img-responsive" data-toggle="modal"
+                    data-target="#imageModal" data-fullsize="images/furnitures/all/home20.jpg">
+            </div>
+
+            <div class="gallery_product col-lg-4 col-md-4 col-sm-4 col-xs-6 filter sprinkle">
+                <img src="images/furnitures/all/home21.jpg" class="img-responsive" data-toggle="modal"
+                    data-target="#imageModal" data-fullsize="images/furnitures/all/home21.jpg">
+            </div>
+
+            <div class="gallery_product col-lg-4 col-md-4 col-sm-4 col-xs-6 filter home">
+                <img src="images/furnitures/all/home22.jpg" class="img-responsive" data-toggle="modal"
+                    data-target="#imageModal" data-fullsize="images/furnitures/all/home22.jpg">
+            </div>
+
+            <div class="gallery_product col-lg-4 col-md-4 col-sm-4 col-xs-6 filter sprinkle">
+                <img src="images/furnitures/all/home23.jpg" class="img-responsive" data-toggle="modal"
+                    data-target="#imageModal" data-fullsize="images/furnitures/all/home23.jpg">
+            </div>
+
+            <div class="gallery_product col-lg-4 col-md-4 col-sm-4 col-xs-6 filter home">
+                <img src="images/furnitures/all/home24.jpg" class="img-responsive" data-toggle="modal"
+                    data-target="#imageModal" data-fullsize="images/furnitures/all/home24.jpg">
+            </div>
+
+            <div class="gallery_product col-lg-4 col-md-4 col-sm-4 col-xs-6 filter sprinkle">
+                <img src="images/furnitures/all/home25.jpg" class="img-responsive" data-toggle="modal"
+                    data-target="#imageModal" data-fullsize="images/furnitures/all/home25.jpg">
+            </div>
+
+            <div class="gallery_product col-lg-4 col-md-4 col-sm-4 col-xs-6 filter home">
+                <img src="images/furnitures/all/home26.jpg" class="img-responsive" data-toggle="modal"
+                    data-target="#imageModal" data-fullsize="images/furnitures/all/home26.jpg">
+            </div>
+
+            <div class="gallery_product col-lg-4 col-md-4 col-sm-4 col-xs-6 filter sprinkle">
+                <img src="images/furnitures/all/home27.jpg" class="img-responsive" data-toggle="modal"
+                    data-target="#imageModal" data-fullsize="images/furnitures/all/home27.jpg">
+            </div>
+
+            <div class="gallery_product col-lg-4 col-md-4 col-sm-4 col-xs-6 filter home">
+                <img src="images/furnitures/all/home28.jpg" class="img-responsive" data-toggle="modal"
+                    data-target="#imageModal" data-fullsize="images/furnitures/all/home28.jpg">
+            </div>
+
+            <div class="gallery_product col-lg-4 col-md-4 col-sm-4 col-xs-6 filter sprinkle">
+                <img src="images/furnitures/all/home29.jpg" class="img-responsive" data-toggle="modal"
+                    data-target="#imageModal" data-fullsize="images/furnitures/all/home29.jpg">
+            </div>
+
+            <div class="gallery_product col-lg-4 col-md-4 col-sm-4 col-xs-6 filter home">
+                <img src="images/furnitures/all/home30.jpg" class="img-responsive" data-toggle="modal"
+                    data-target="#imageModal" data-fullsize="images/furnitures/all/home30.jpg">
+            </div>
+
+            <div class="gallery_product col-lg-4 col-md-4 col-sm-4 col-xs-6 filter sprinkle">
+                <img src="images/furnitures/all/home31.jpg" class="img-responsive" data-toggle="modal"
+                    data-target="#imageModal" data-fullsize="images/furnitures/all/home31.jpg">
+            </div>
+
+
+            <div class="gallery_product col-lg-4 col-md-4 col-sm-4 col-xs-6 filter irrigation">
+                <img src="https://res.cloudinary.com/dxfq3iotg/image/upload/v1564033828/Restaurant/img-4.jpg"
+                    class="img-responsive" data-toggle="modal" data-target="#imageModal"
+                    data-fullsize="https://res.cloudinary.com/dxfq3iotg/image/upload/v1564033828/Restaurant/img-4.jpg">
+            </div>
+
+            <div class="gallery_product col-lg-4 col-md-4 col-sm-4 col-xs-6 filter spray">
+                <img src="https://res.cloudinary.com/dxfq3iotg/image/upload/v1564033828/Restaurant/img-5.jpg"
+                    class="img-responsive" data-toggle="modal" data-target="#imageModal"
+                    data-fullsize="https://res.cloudinary.com/dxfq3iotg/image/upload/v1564033828/Restaurant/img-5.jpg">
+            </div>
+
+            <div class="gallery_product col-lg-4 col-md-4 col-sm-4 col-xs-6 filter irrigation">
+                <img src="https://res.cloudinary.com/dxfq3iotg/image/upload/v1564033829/Restaurant/img-2.jpg"
+                    class="img-responsive" data-toggle="modal" data-target="#imageModal"
+                    data-fullsize="https://res.cloudinary.com/dxfq3iotg/image/upload/v1564033829/Restaurant/img-2.jpg">
+            </div>
+
+            <div class="gallery_product col-lg-4 col-md-4 col-sm-4 col-xs-6 filter spray">
+                <img src="https://res.cloudinary.com/dxfq3iotg/image/upload/v1564033829/Restaurant/img-7.jpg"
+                    class="img-responsive" data-toggle="modal" data-target="#imageModal"
+                    data-fullsize="https://res.cloudinary.com/dxfq3iotg/image/upload/v1564033829/Restaurant/img-7.jpg">
+            </div>
+
+            <div class="gallery_product col-lg-4 col-md-4 col-sm-4 col-xs-6 filter irrigation">
+                <img src="https://res.cloudinary.com/dxfq3iotg/image/upload/v1564033828/Restaurant/img-3.jpg"
+                    class="img-responsive" data-toggle="modal" data-target="#imageModal"
+                    data-fullsize="https://res.cloudinary.com/dxfq3iotg/image/upload/v1564033828/Restaurant/img-3.jpg">
+            </div>
+
+            <div class="gallery_product col-lg-4 col-md-4 col-sm-4 col-xs-6 filter irrigation">
+                <img src="https://res.cloudinary.com/dxfq3iotg/image/upload/v1564033828/Restaurant/img-5.jpg"
+                    class="img-responsive" data-toggle="modal" data-target="#imageModal"
+                    data-fullsize="https://res.cloudinary.com/dxfq3iotg/image/upload/v1564033828/Restaurant/img-5.jpg">
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Structure -->
+    <div id="imageModal" class="modal fade" tabindex="-1" role="dialog">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <img id="modalImage" src="" alt="Image" style="width: 100%; border-radius: 15px;">
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        $(document).ready(function () {
+            $('.gallery_product img').click(function () {
+                var imgSrc = $(this).attr('data-fullsize');
+                $('#modalImage').attr('src', imgSrc);
+            });
+
+            $(".filter-button").click(function () {
+                var value = $(this).attr('data-filter');
+
+                if (value === "all") {
+                    $('.filter').show('1000');
+                } else {
+                    $(".filter").not('.' + value).hide('3000');
+                    $('.filter').filter('.' + value).show('3000');
+                }
+
+                $(".filter-button").removeClass("active");
+                $(this).addClass("active");
+            });
+        });
+    </script>
+</body>
+
+</html>
