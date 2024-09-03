@@ -98,7 +98,7 @@
 
         .gallery-title {
             font-size: 36px;
-            color: #FFA500;
+            color: black;
             text-align: center;
             font-weight: 500;
             margin-bottom: 70px;
@@ -127,10 +127,18 @@
             color: white;
         }
 
-        .gallery_product {
-            margin-bottom: 30px;
-            /* Space between rows */
-        }
+       .gallery_product {
+    margin-bottom: 30px;
+    opacity: 0; /* Initial state for the animation */
+    transform: translateY(20px); /* Initial position */
+    transition: all 0.6s ease-out; /* Animation timing */
+}
+
+.gallery_product.visible {
+    opacity: 1; /* Final state */
+    transform: translateY(0); /* Final position */
+}
+
 
         .gallery_product img {
             width: 100%;
@@ -382,6 +390,19 @@
                 $(this).addClass("active");
             });
         });
+
+        $(document).ready(function() {
+    $(window).on('scroll', function() {
+        $('.gallery_product').each(function() {
+            var elementTop = $(this).offset().top;
+            var viewportBottom = $(window).scrollTop() + $(window).height();
+            if (elementTop < viewportBottom) {
+                $(this).addClass('visible');
+            }
+        });
+    });
+});
+
     </script>
 </body>
 
